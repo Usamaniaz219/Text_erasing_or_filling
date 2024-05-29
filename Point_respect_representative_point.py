@@ -1,62 +1,3 @@
-import cv2
-import numpy as np
-from shapely.geometry import Polygon, Point
-import matplotlib.pyplot as plt
-
-# # Load mask image
-# mask_image = cv2.imread('/home/usama/Median_erode__contours_low__and_high_resolution_test/centre_based_removing_Contour_logic_results/Failure_Cases_Centre_based_logic/demo117_4.jpg', 0)
-
-# # Find contours
-# contours, _ = cv2.findContours(mask_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-# # Convert contours to polygons and determine representative points
-# polygons = []
-# representative_points = []
-
-# for contour in contours:
-#     if len(contour)>=4:
-#         # Convert contour to Shapely Polygon
-#         polygon = Polygon(contour.reshape(-1, 2))
-#         polygons.append(polygon)
-        
-#         # Calculate representative point (centroid)
-#         representative_point = polygon.representative_point()
-#         representative_points.append(representative_point)
-
-# # Function to find nearest boundary points
-# # def find_nearest_boundary_points(polygon, representative_point):
-# #     distances = []
-# #     for point in polygon.exterior.coords[:-1]:  # Last point is the same as the first
-# #         distances.append((point, representative_point.distance(Point(point))))
-# #     distances.sort(key=lambda x: x[1])
-# #     return distances[:4]  # Nearest 4 boundary points
-
-
-
-# def find_nearest_boundary_points(polygon, representative_point):
-#     distances = []
-#     # Iterate over each interior ring
-#     for interior in polygon.interiors:
-#         for point in interior.coords[:-1]:  # Last point is the same as the first
-#             distances.append((point, representative_point.distance(Point(point))))
-#     distances.sort(key=lambda x: x[1])
-#     return distances[:4]  # Nearest 4 boundary points
-
-
-# # Draw circles on nearest boundary points
-# result_image = cv2.cvtColor(mask_image, cv2.COLOR_GRAY2BGR)
-# for polygon, representative_point in zip(polygons, representative_points):
-#     nearest_points = find_nearest_boundary_points(polygon, representative_point)
-#     for point, _ in nearest_points:
-#         cv2.circle(result_image, (int(point[0]), int(point[1])), 5, (0, 255, 0), -1)
-
-# # Visualize result
-# cv2.imwrite("poit_respect_rep.jpg",result_image)
-# plt.imshow(result_image)
-# plt.axis('off')
-# plt.show()
-
-
 
 import cv2
 import numpy as np
@@ -88,15 +29,6 @@ for idx in range(len(contours)):
         if polygon:
             polygons.append(polygon)
             representative_points.append(polygon.representative_point())
-
-
-# def find_nearest_boundary_points(polygon, representative_point):
-#     distances = []
-#     # Iterate over each boundary point of the polygon's exterior ring
-#     for point in polygon.exterior.coords[:-1]:  # Last point is the same as the first
-#         distances.append((point, representative_point.distance(Point(point))))
-#     distances.sort(key=lambda x: x[1])
-#     return distances[:4]  # Nearest 4 boundar
 
 
 def find_nearest_boundary_points(polygon, representative_point):
