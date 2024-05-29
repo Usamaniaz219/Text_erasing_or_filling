@@ -30,13 +30,6 @@ for cnt in contours:
                 if dist <=5:
                     mask[i,j] = 255 # Draw a point on the mask image
                     
-        
-        # Calculate Euclidean distance from representative point
-        for i in range(mask.shape[0]):
-            for j in range(mask.shape[1]):
-                dist = np.sqrt((i - rep_y) ** 2 + (j - rep_x) ** 2)
-                if dist <= 5:
-                    mask[i, j] = 255  # Draw a point on the mask image
 
 # Display the mask image with points
 cv2.imwrite('mask_point.png',mask)
